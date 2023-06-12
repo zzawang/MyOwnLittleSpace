@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA380AE22A23C9B40053DC90 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AA380AE12A23C9B40053DC90 /* Alamofire */; };
+		AA380AE52A23C9D70053DC90 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = AA380AE42A23C9D70053DC90 /* SwiftyJSON */; };
+		AA380AE72A23DD220053DC90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA380AE62A23DD220053DC90 /* GoogleService-Info.plist */; };
 		AA59AAC62A2361F600CBF9AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59AAC52A2361F600CBF9AE /* AppDelegate.swift */; };
 		AA59AAC82A2361F600CBF9AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59AAC72A2361F600CBF9AE /* SceneDelegate.swift */; };
 		AA59AACA2A2361F600CBF9AE /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59AAC92A2361F600CBF9AE /* WeatherViewController.swift */; };
@@ -35,9 +38,46 @@
 		AA59AB072A236D4C00CBF9AE /* plant5.json in Resources */ = {isa = PBXBuildFile; fileRef = AA59AB022A236D4C00CBF9AE /* plant5.json */; };
 		AA59AB092A2376DC00CBF9AE /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59AB082A2376DC00CBF9AE /* DiaryViewController.swift */; };
 		AA59AB0B2A237A2C00CBF9AE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59AB0A2A237A2C00CBF9AE /* TabBarController.swift */; };
+		AAC2BF632A3373F4002E1263 /* mood1.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF622A3373F4002E1263 /* mood1.png */; };
+		AAC2BF652A337C70002E1263 /* mood2.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF642A337C70002E1263 /* mood2.png */; };
+		AAC2BF672A337CAE002E1263 /* mood3.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF662A337CAE002E1263 /* mood3.png */; };
+		AAC2BF6B2A337D1A002E1263 /* mood4.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF6A2A337D1A002E1263 /* mood4.png */; };
+		AAC2BF6D2A3382C3002E1263 /* mood5.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF6C2A3382C3002E1263 /* mood5.png */; };
+		AAC2BF712A349129002E1263 /* mood6.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF6E2A349120002E1263 /* mood6.png */; };
+		AAC2BF732A349129002E1263 /* mood8.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF702A349129002E1263 /* mood8.png */; };
+		AAC2BF752A349591002E1263 /* mood7.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF742A349591002E1263 /* mood7.png */; };
+		AAC2BF7A2A3497C7002E1263 /* mood11.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF762A3497B9002E1263 /* mood11.png */; };
+		AAC2BF7B2A3497C7002E1263 /* mood10.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF772A3497BE002E1263 /* mood10.png */; };
+		AAC2BF7C2A3497C7002E1263 /* mood9.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF782A3497C3002E1263 /* mood9.png */; };
+		AAC2BF7D2A3497C7002E1263 /* mood12.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF792A3497C7002E1263 /* mood12.png */; };
+		AAC2BF892A3499BF002E1263 /* mood17.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF7E2A34998F002E1263 /* mood17.png */; };
+		AAC2BF8A2A3499BF002E1263 /* mood16.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF7F2A349994002E1263 /* mood16.png */; };
+		AAC2BF8B2A3499BF002E1263 /* mood18.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF802A349999002E1263 /* mood18.png */; };
+		AAC2BF8C2A3499BF002E1263 /* mood14.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF812A34999F002E1263 /* mood14.png */; };
+		AAC2BF8D2A3499BF002E1263 /* mood13.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF822A3499A3002E1263 /* mood13.png */; };
+		AAC2BF8E2A3499BF002E1263 /* mood19.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF832A3499A9002E1263 /* mood19.png */; };
+		AAC2BF8F2A3499BF002E1263 /* mood20.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF842A3499AE002E1263 /* mood20.png */; };
+		AAC2BF902A3499BF002E1263 /* mood22.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF852A3499B2002E1263 /* mood22.png */; };
+		AAC2BF912A3499BF002E1263 /* mood21.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF862A3499B7002E1263 /* mood21.png */; };
+		AAC2BF922A3499BF002E1263 /* mood15.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF872A3499BB002E1263 /* mood15.png */; };
+		AAC2BF932A3499BF002E1263 /* mood23.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF882A3499BF002E1263 /* mood23.png */; };
+		AAC2BF952A349B0A002E1263 /* mood24.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF942A349B0A002E1263 /* mood24.png */; };
+		AAC2BF972A349FE9002E1263 /* DiaryContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BF962A349FE9002E1263 /* DiaryContentViewController.swift */; };
+		AAC2BF992A350884002E1263 /* addDiary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF982A350884002E1263 /* addDiary.json */; };
+		AAC2BF9B2A35FAF0002E1263 /* Lock.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF9A2A35FAEF002E1263 /* Lock.json */; };
+		AAC2BFA32A3754A8002E1263 /* weather3.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF9C2A375499002E1263 /* weather3.png */; };
+		AAC2BFA42A3754A8002E1263 /* weather1.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF9D2A37549C002E1263 /* weather1.png */; };
+		AAC2BFA52A3754A8002E1263 /* weather7.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF9E2A37549E002E1263 /* weather7.png */; };
+		AAC2BFA62A3754A8002E1263 /* weather5.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BF9F2A3754A0002E1263 /* weather5.png */; };
+		AAC2BFA72A3754A8002E1263 /* weather2.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFA02A3754A3002E1263 /* weather2.png */; };
+		AAC2BFA82A3754A8002E1263 /* weather6.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFA12A3754A5002E1263 /* weather6.png */; };
+		AAC2BFA92A3754A8002E1263 /* weather8.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFA22A3754A8002E1263 /* weather8.png */; };
+		AAC2BFAB2A3785CF002E1263 /* dancingDiary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */; };
+		AAC2BFAD2A378D60002E1263 /* weather4.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFAC2A378D60002E1263 /* weather4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA380AE62A23DD220053DC90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA59AAC22A2361F600CBF9AE /* MyOwnLittleSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyOwnLittleSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA59AAC52A2361F600CBF9AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA59AAC72A2361F600CBF9AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +95,42 @@
 		AA59AB022A236D4C00CBF9AE /* plant5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plant5.json; sourceTree = "<group>"; };
 		AA59AB082A2376DC00CBF9AE /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		AA59AB0A2A237A2C00CBF9AE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		AAC2BF622A3373F4002E1263 /* mood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood1.png; sourceTree = "<group>"; };
+		AAC2BF642A337C70002E1263 /* mood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood2.png; sourceTree = "<group>"; };
+		AAC2BF662A337CAE002E1263 /* mood3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood3.png; sourceTree = "<group>"; };
+		AAC2BF6A2A337D1A002E1263 /* mood4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood4.png; sourceTree = "<group>"; };
+		AAC2BF6C2A3382C3002E1263 /* mood5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood5.png; sourceTree = "<group>"; };
+		AAC2BF6E2A349120002E1263 /* mood6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood6.png; sourceTree = "<group>"; };
+		AAC2BF702A349129002E1263 /* mood8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood8.png; sourceTree = "<group>"; };
+		AAC2BF742A349591002E1263 /* mood7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood7.png; sourceTree = "<group>"; };
+		AAC2BF762A3497B9002E1263 /* mood11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood11.png; sourceTree = "<group>"; };
+		AAC2BF772A3497BE002E1263 /* mood10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood10.png; sourceTree = "<group>"; };
+		AAC2BF782A3497C3002E1263 /* mood9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood9.png; sourceTree = "<group>"; };
+		AAC2BF792A3497C7002E1263 /* mood12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood12.png; sourceTree = "<group>"; };
+		AAC2BF7E2A34998F002E1263 /* mood17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood17.png; sourceTree = "<group>"; };
+		AAC2BF7F2A349994002E1263 /* mood16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood16.png; sourceTree = "<group>"; };
+		AAC2BF802A349999002E1263 /* mood18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood18.png; sourceTree = "<group>"; };
+		AAC2BF812A34999F002E1263 /* mood14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood14.png; sourceTree = "<group>"; };
+		AAC2BF822A3499A3002E1263 /* mood13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood13.png; sourceTree = "<group>"; };
+		AAC2BF832A3499A9002E1263 /* mood19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood19.png; sourceTree = "<group>"; };
+		AAC2BF842A3499AE002E1263 /* mood20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood20.png; sourceTree = "<group>"; };
+		AAC2BF852A3499B2002E1263 /* mood22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood22.png; sourceTree = "<group>"; };
+		AAC2BF862A3499B7002E1263 /* mood21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood21.png; sourceTree = "<group>"; };
+		AAC2BF872A3499BB002E1263 /* mood15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood15.png; sourceTree = "<group>"; };
+		AAC2BF882A3499BF002E1263 /* mood23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood23.png; sourceTree = "<group>"; };
+		AAC2BF942A349B0A002E1263 /* mood24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mood24.png; sourceTree = "<group>"; };
+		AAC2BF962A349FE9002E1263 /* DiaryContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryContentViewController.swift; sourceTree = "<group>"; };
+		AAC2BF982A350884002E1263 /* addDiary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = addDiary.json; sourceTree = "<group>"; };
+		AAC2BF9A2A35FAEF002E1263 /* Lock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lock.json; sourceTree = "<group>"; };
+		AAC2BF9C2A375499002E1263 /* weather3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather3.png; sourceTree = "<group>"; };
+		AAC2BF9D2A37549C002E1263 /* weather1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather1.png; sourceTree = "<group>"; };
+		AAC2BF9E2A37549E002E1263 /* weather7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather7.png; sourceTree = "<group>"; };
+		AAC2BF9F2A3754A0002E1263 /* weather5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather5.png; sourceTree = "<group>"; };
+		AAC2BFA02A3754A3002E1263 /* weather2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather2.png; sourceTree = "<group>"; };
+		AAC2BFA12A3754A5002E1263 /* weather6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather6.png; sourceTree = "<group>"; };
+		AAC2BFA22A3754A8002E1263 /* weather8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather8.png; sourceTree = "<group>"; };
+		AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dancingDiary.json; sourceTree = "<group>"; };
+		AAC2BFAC2A378D60002E1263 /* weather4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +139,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA59AAF72A23641B00CBF9AE /* Lottie in Frameworks */,
+				AA380AE22A23C9B40053DC90 /* Alamofire in Frameworks */,
 				AA59AAF12A23633800CBF9AE /* FirebaseStorageCombine-Community in Frameworks */,
+				AA380AE52A23C9D70053DC90 /* SwiftyJSON in Frameworks */,
 				AA59AAF42A23636600CBF9AE /* FSCalendar in Frameworks */,
 				AA59AAE32A23633800CBF9AE /* FirebaseDatabaseSwift in Frameworks */,
 				AA59AAE12A23633800CBF9AE /* FirebaseDatabase in Frameworks */,
@@ -106,16 +184,53 @@
 				AA59AAFA2A2365BD00CBF9AE /* MainViewController.swift */,
 				AA59AAC92A2361F600CBF9AE /* WeatherViewController.swift */,
 				AA59AB082A2376DC00CBF9AE /* DiaryViewController.swift */,
+				AAC2BF962A349FE9002E1263 /* DiaryContentViewController.swift */,
 				AA59AACB2A2361F600CBF9AE /* Main.storyboard */,
 				AA59AACE2A2361F700CBF9AE /* Assets.xcassets */,
 				AA59AAD02A2361F700CBF9AE /* LaunchScreen.storyboard */,
 				AA59AAD32A2361F700CBF9AE /* Info.plist */,
+				AA380AE62A23DD220053DC90 /* GoogleService-Info.plist */,
 				AA59AAFC2A2366DB00CBF9AE /* launchGIF.json */,
+				AAC2BF982A350884002E1263 /* addDiary.json */,
+				AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */,
+				AAC2BF9A2A35FAEF002E1263 /* Lock.json */,
 				AA59AB012A236D4C00CBF9AE /* plant1.json */,
 				AA59AAFE2A236D4C00CBF9AE /* plant2.json */,
 				AA59AB002A236D4C00CBF9AE /* plant3.json */,
 				AA59AAFF2A236D4C00CBF9AE /* plant4.json */,
 				AA59AB022A236D4C00CBF9AE /* plant5.json */,
+				AAC2BF9D2A37549C002E1263 /* weather1.png */,
+				AAC2BFA02A3754A3002E1263 /* weather2.png */,
+				AAC2BF9C2A375499002E1263 /* weather3.png */,
+				AAC2BFAC2A378D60002E1263 /* weather4.png */,
+				AAC2BF9F2A3754A0002E1263 /* weather5.png */,
+				AAC2BFA12A3754A5002E1263 /* weather6.png */,
+				AAC2BF9E2A37549E002E1263 /* weather7.png */,
+				AAC2BFA22A3754A8002E1263 /* weather8.png */,
+				AAC2BF622A3373F4002E1263 /* mood1.png */,
+				AAC2BF642A337C70002E1263 /* mood2.png */,
+				AAC2BF662A337CAE002E1263 /* mood3.png */,
+				AAC2BF6A2A337D1A002E1263 /* mood4.png */,
+				AAC2BF6C2A3382C3002E1263 /* mood5.png */,
+				AAC2BF6E2A349120002E1263 /* mood6.png */,
+				AAC2BF742A349591002E1263 /* mood7.png */,
+				AAC2BF702A349129002E1263 /* mood8.png */,
+				AAC2BF782A3497C3002E1263 /* mood9.png */,
+				AAC2BF772A3497BE002E1263 /* mood10.png */,
+				AAC2BF762A3497B9002E1263 /* mood11.png */,
+				AAC2BF792A3497C7002E1263 /* mood12.png */,
+				AAC2BF822A3499A3002E1263 /* mood13.png */,
+				AAC2BF812A34999F002E1263 /* mood14.png */,
+				AAC2BF872A3499BB002E1263 /* mood15.png */,
+				AAC2BF7F2A349994002E1263 /* mood16.png */,
+				AAC2BF7E2A34998F002E1263 /* mood17.png */,
+				AAC2BF802A349999002E1263 /* mood18.png */,
+				AAC2BF832A3499A9002E1263 /* mood19.png */,
+				AAC2BF842A3499AE002E1263 /* mood20.png */,
+				AAC2BF862A3499B7002E1263 /* mood21.png */,
+				AAC2BF852A3499B2002E1263 /* mood22.png */,
+				AAC2BF882A3499BF002E1263 /* mood23.png */,
+				AAC2BF942A349B0A002E1263 /* mood24.png */,
 			);
 			path = MyOwnLittleSpace;
 			sourceTree = "<group>";
@@ -150,6 +265,8 @@
 				AA59AAF02A23633800CBF9AE /* FirebaseStorageCombine-Community */,
 				AA59AAF32A23636600CBF9AE /* FSCalendar */,
 				AA59AAF62A23641B00CBF9AE /* Lottie */,
+				AA380AE12A23C9B40053DC90 /* Alamofire */,
+				AA380AE42A23C9D70053DC90 /* SwiftyJSON */,
 			);
 			productName = MyOwnLittleSpace;
 			productReference = AA59AAC22A2361F600CBF9AE /* MyOwnLittleSpace.app */;
@@ -183,6 +300,8 @@
 				AA59AADB2A23633700CBF9AE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				AA59AAF22A23636600CBF9AE /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				AA59AAF52A23641B00CBF9AE /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				AA380AE02A23C9B40053DC90 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AA380AE32A23C9D70053DC90 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = AA59AAC32A2361F600CBF9AE /* Products */;
 			projectDirPath = "";
@@ -198,15 +317,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC2BF8D2A3499BF002E1263 /* mood13.png in Resources */,
+				AAC2BF712A349129002E1263 /* mood6.png in Resources */,
+				AAC2BF9B2A35FAF0002E1263 /* Lock.json in Resources */,
+				AAC2BFA62A3754A8002E1263 /* weather5.png in Resources */,
+				AAC2BF6D2A3382C3002E1263 /* mood5.png in Resources */,
+				AAC2BF8A2A3499BF002E1263 /* mood16.png in Resources */,
+				AAC2BF992A350884002E1263 /* addDiary.json in Resources */,
+				AAC2BF7A2A3497C7002E1263 /* mood11.png in Resources */,
+				AAC2BFAD2A378D60002E1263 /* weather4.png in Resources */,
+				AAC2BF7B2A3497C7002E1263 /* mood10.png in Resources */,
+				AAC2BF732A349129002E1263 /* mood8.png in Resources */,
+				AAC2BF752A349591002E1263 /* mood7.png in Resources */,
+				AAC2BF8B2A3499BF002E1263 /* mood18.png in Resources */,
+				AAC2BFA92A3754A8002E1263 /* weather8.png in Resources */,
+				AAC2BF672A337CAE002E1263 /* mood3.png in Resources */,
 				AA59AAD22A2361F700CBF9AE /* LaunchScreen.storyboard in Resources */,
 				AA59AACF2A2361F700CBF9AE /* Assets.xcassets in Resources */,
+				AAC2BF952A349B0A002E1263 /* mood24.png in Resources */,
 				AA59AAFD2A2366DB00CBF9AE /* launchGIF.json in Resources */,
 				AA59AB062A236D4C00CBF9AE /* plant1.json in Resources */,
+				AAC2BF632A3373F4002E1263 /* mood1.png in Resources */,
+				AAC2BF912A3499BF002E1263 /* mood21.png in Resources */,
+				AAC2BFA82A3754A8002E1263 /* weather6.png in Resources */,
+				AAC2BF7C2A3497C7002E1263 /* mood9.png in Resources */,
+				AAC2BF932A3499BF002E1263 /* mood23.png in Resources */,
+				AAC2BF652A337C70002E1263 /* mood2.png in Resources */,
 				AA59AACD2A2361F600CBF9AE /* Main.storyboard in Resources */,
+				AAC2BF7D2A3497C7002E1263 /* mood12.png in Resources */,
+				AAC2BFA32A3754A8002E1263 /* weather3.png in Resources */,
 				AA59AB042A236D4C00CBF9AE /* plant4.json in Resources */,
 				AA59AB032A236D4C00CBF9AE /* plant2.json in Resources */,
+				AAC2BF8F2A3499BF002E1263 /* mood20.png in Resources */,
+				AA380AE72A23DD220053DC90 /* GoogleService-Info.plist in Resources */,
+				AAC2BFA52A3754A8002E1263 /* weather7.png in Resources */,
+				AAC2BFA72A3754A8002E1263 /* weather2.png in Resources */,
+				AAC2BF922A3499BF002E1263 /* mood15.png in Resources */,
+				AAC2BF8E2A3499BF002E1263 /* mood19.png in Resources */,
+				AAC2BF902A3499BF002E1263 /* mood22.png in Resources */,
+				AAC2BF892A3499BF002E1263 /* mood17.png in Resources */,
+				AAC2BFAB2A3785CF002E1263 /* dancingDiary.json in Resources */,
 				AA59AB072A236D4C00CBF9AE /* plant5.json in Resources */,
+				AAC2BFA42A3754A8002E1263 /* weather1.png in Resources */,
 				AA59AB052A236D4C00CBF9AE /* plant3.json in Resources */,
+				AAC2BF6B2A337D1A002E1263 /* mood4.png in Resources */,
+				AAC2BF8C2A3499BF002E1263 /* mood14.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA59AACA2A2361F600CBF9AE /* WeatherViewController.swift in Sources */,
+				AAC2BF972A349FE9002E1263 /* DiaryContentViewController.swift in Sources */,
 				AA59AB092A2376DC00CBF9AE /* DiaryViewController.swift in Sources */,
 				AA59AAC62A2361F600CBF9AE /* AppDelegate.swift in Sources */,
 				AA59AB0B2A237A2C00CBF9AE /* TabBarController.swift in Sources */,
@@ -442,6 +598,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA380AE02A23C9B40053DC90 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		AA380AE32A23C9D70053DC90 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		AA59AADB2A23633700CBF9AE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -469,6 +641,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA380AE12A23C9B40053DC90 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA380AE02A23C9B40053DC90 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		AA380AE42A23C9D70053DC90 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA380AE32A23C9D70053DC90 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		AA59AADC2A23633800CBF9AE /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA59AADB2A23633700CBF9AE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
