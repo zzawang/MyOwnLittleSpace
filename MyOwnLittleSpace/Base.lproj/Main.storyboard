@@ -363,31 +363,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLl-fZ-5Fw" customClass="LottieAnimationView" customModule="Lottie">
-                                <rect key="frame" x="30" y="209" width="333" height="480"/>
+                                <rect key="frame" x="30" y="209" width="333" height="350"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="6Xh-nu-dCj"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CF4-tU-ceL">
-                                <rect key="frame" x="0.0" y="689" width="393" height="80"/>
-                                <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="XRp-OG-dvU"/>
-                                    <constraint firstAttribute="height" constant="80" id="pfD-WM-asc"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IcM-6n-fDy"/>
                         <color key="backgroundColor" red="1" green="0.94117647058823528" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IcM-6n-fDy" firstAttribute="trailing" secondItem="CF4-tU-ceL" secondAttribute="trailing" id="0ss-YI-3KD"/>
-                            <constraint firstItem="CF4-tU-ceL" firstAttribute="leading" secondItem="IcM-6n-fDy" secondAttribute="leading" id="4sP-LQ-Ptv"/>
                             <constraint firstItem="fLl-fZ-5Fw" firstAttribute="top" secondItem="IcM-6n-fDy" secondAttribute="top" constant="150" id="DLv-vo-dhn"/>
                             <constraint firstItem="fLl-fZ-5Fw" firstAttribute="leading" secondItem="IcM-6n-fDy" secondAttribute="leading" constant="30" id="RRJ-uk-vKJ"/>
                             <constraint firstItem="IcM-6n-fDy" firstAttribute="trailing" secondItem="fLl-fZ-5Fw" secondAttribute="trailing" constant="30" id="Ujk-6p-B5x"/>
-                            <constraint firstItem="IcM-6n-fDy" firstAttribute="bottom" secondItem="CF4-tU-ceL" secondAttribute="bottom" id="nMk-0a-8zh"/>
-                            <constraint firstItem="CF4-tU-ceL" firstAttribute="top" secondItem="fLl-fZ-5Fw" secondAttribute="bottom" id="yyg-hJ-vaf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" image="person.fill" catalog="system" id="HJ1-rD-TKY"/>

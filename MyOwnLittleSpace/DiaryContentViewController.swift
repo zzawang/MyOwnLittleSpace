@@ -41,6 +41,15 @@ class DiaryContentViewController: UIViewController {
     var temperature: String?  // 현재 기온을 담을 변수
     
     var weatherLabel: UILabel! // 기온 레이블 (현재 기온을 담기 위해)
+    var dateLabel: UILabel! // 날짜 레이블
+    
+    var moodImg: UIImage!
+    var moodImgView: UIImageView!
+    
+    var weatherImg: UIImage!
+    var weatherImgView: UIImageView!
+    
+    var contentTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +61,7 @@ class DiaryContentViewController: UIViewController {
         // 커스텀한 색상 정의
         let yellowColor = UIColor(hex: "#FFF096")
         let orangeColor = UIColor(hex: "#FFC800")
-
+        
         view.backgroundColor = yellowColor
 
         // 첫 번째 페이지
@@ -66,7 +75,7 @@ class DiaryContentViewController: UIViewController {
             firstContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             firstContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             firstContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            firstContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            firstContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -90)
         ])
 
         // 이름 레이블 생성 및 설정
@@ -172,7 +181,7 @@ class DiaryContentViewController: UIViewController {
             continueBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40),
             continueBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40),
             continueBtn.topAnchor.constraint(equalTo: firstContainerView.bottomAnchor, constant: 15),
-            continueBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            continueBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
         
         // 두 번째 페이지
@@ -187,7 +196,7 @@ class DiaryContentViewController: UIViewController {
             secondContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             secondContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             secondContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            secondContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            secondContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -90)
         ])
         
         // 인사 레이블 생성 및 설정
@@ -278,22 +287,76 @@ class DiaryContentViewController: UIViewController {
         thirdContainerView.isHidden = true
         view.addSubview(thirdContainerView)
 
-        // secondContainerView의 제약 조건 설정
+        // thirdContainerView의 제약 조건 설정
         NSLayoutConstraint.activate([
             thirdContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             thirdContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             thirdContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            thirdContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            thirdContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -90)
         ])
         
+        // 날짜 레이블 생성 및 설정
+        dateLabel = UILabel()
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.textAlignment = .left
+        dateLabel.font = UIFont.boldSystemFont(ofSize: 25) // 폰트 크기 설정
+        thirdContainerView.addSubview(dateLabel)
         
+        // mood, weather 이미지뷰
+        moodImgView = UIImageView()
+        moodImgView.translatesAutoresizingMaskIntoConstraints = false
+        thirdContainerView.addSubview(moodImgView)
+
+        weatherImgView = UIImageView()
+        weatherImgView.translatesAutoresizingMaskIntoConstraints = false
+        thirdContainerView.addSubview(weatherImgView)
+
+        // 날짜 레이블과 이미지뷰들의 제약 조건 설정
+        NSLayoutConstraint.activate([
+            dateLabel.leadingAnchor.constraint(equalTo: thirdContainerView.leadingAnchor, constant: 40),
+            dateLabel.topAnchor.constraint(equalTo: thirdContainerView.topAnchor, constant: 40),
+            moodImgView.widthAnchor.constraint(equalToConstant: 30),
+            moodImgView.heightAnchor.constraint(equalToConstant: 30),
+            moodImgView.leadingAnchor.constraint(equalTo: dateLabel.trailingAnchor, constant: 20),
+            moodImgView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor),
+            weatherImgView.widthAnchor.constraint(equalToConstant: 30),
+            weatherImgView.heightAnchor.constraint(equalToConstant: 30),
+            weatherImgView.leadingAnchor.constraint(equalTo: moodImgView.trailingAnchor, constant: 10),
+            weatherImgView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor)
+        ])
         
+        let contentContainerView = UIView()
+        contentContainerView.translatesAutoresizingMaskIntoConstraints = false
+        contentContainerView.backgroundColor = .white
+        contentContainerView.layer.cornerRadius = 15
+        thirdContainerView.addSubview(contentContainerView)
         
+        // contentContainerView의 제약 조건 설정
+        NSLayoutConstraint.activate([
+//            contentContainerView.heightAnchor.constraint(equalToConstant: view.frame.height/1.5),
+            contentContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            contentContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            contentContainerView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20),
+            contentContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+        ])
         
-        
-        
-        
-        
+        contentTextView = UITextView()
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
+        contentTextView.textContainer.lineBreakMode = .byWordWrapping
+        contentTextView.backgroundColor = .clear
+        contentTextView.contentMode = .topLeft
+        contentTextView.font = UIFont.boldSystemFont(ofSize: 15) // 폰트 크기 설정
+        contentContainerView.addSubview(contentTextView)
+
+        // contentTextField의 제약 조건 설정
+        NSLayoutConstraint.activate([
+            contentTextView.leadingAnchor.constraint(equalTo: contentContainerView.leadingAnchor, constant: 10),
+            contentTextView.trailingAnchor.constraint(equalTo: contentContainerView.trailingAnchor, constant: -10),
+            contentTextView.topAnchor.constraint(equalTo: contentContainerView.topAnchor, constant: 10),
+            contentTextView.bottomAnchor.constraint(equalTo: contentContainerView.bottomAnchor, constant: -10),
+            contentTextView.widthAnchor.constraint(lessThanOrEqualTo: contentContainerView.widthAnchor, constant: -20),
+            contentTextView.heightAnchor.constraint(lessThanOrEqualTo: contentContainerView.heightAnchor, constant: -20)
+        ])
         
         // 마지막 페이지
         completeContainerView = UIView()
@@ -307,9 +370,10 @@ class DiaryContentViewController: UIViewController {
             completeContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             completeContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             completeContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            completeContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            completeContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -90)
         ])
-        
+                                  
+                                  
         guard let jsonPath = Bundle.main.path(forResource: "dancingDiary", ofType: "json") else {
             print("JSON file not found")
             return
@@ -435,6 +499,23 @@ extension DiaryContentViewController {
                 self.continueBtn.isUserInteractionEnabled = false
                 self.continueBtn.alpha = 0.3 // 계속 버튼 색깔 연하게
                 self.viewCount += 1
+                
+                self.changeViews()
+                
+            }
+        }
+        
+        if continueBtn.isEnabled && continueBtn.isUserInteractionEnabled && viewCount == 3 {
+            print("continueBtnClicked3")
+
+            // secondContainerView 이동 애니메이션 적용
+            UIView.animate(withDuration: 0.6, animations: {
+                self.thirdContainerView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
+            }) { (_) in
+                self.thirdContainerView.isHidden = true
+                self.completeContainerView.isHidden = false
+                self.animateThirdContainerView()
+                self.viewCount += 1
             }
         }
     }
@@ -514,5 +595,18 @@ extension DiaryContentViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location manager error: \(error.localizedDescription)")
+    }
+}
+
+extension DiaryContentViewController {
+    func changeViews(){
+        self.dateLabel.text = selectedDate
+        
+        // mood, weather 이미지
+        self.moodImg = UIImage(named: "mood\(moodArr.firstIndex(of: clickedMood)! + 1).png")!
+        self.moodImgView.image = moodImg
+
+        self.weatherImg = UIImage(named: "weather\(weatherArr.firstIndex(of: clickedWeather)! + 1).png")!
+        self.weatherImgView.image = weatherImg
     }
 }

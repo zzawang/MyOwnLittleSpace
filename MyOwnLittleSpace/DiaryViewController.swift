@@ -8,6 +8,7 @@
 import UIKit
 import FSCalendar
 import Lottie
+import Foundation
 
 
 class DiaryViewController: UIViewController {
@@ -34,13 +35,19 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var lockImgView: UIImageView!
     @IBOutlet weak var lockAnimationView: LottieAnimationView!
     
+    var dateFormatter:DateFormatter!
+    var selectedDate:String = "" // 현재 선택된 날짜
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 한국으로 수정 필요
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        print("오늘 날짜 : " + dateFormatter.string(from: Date.now))
+        dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul") // 대한민국 시간대 (Asia/Seoul)
+
+        let formattedDate = dateFormatter.string(from: Date())
+        selectedDate = formattedDate
+        print(selectedDate)
     
         noDiaryContainerView.isHidden = false
         diaryContainerView.isHidden = true
@@ -147,10 +154,11 @@ extension DiaryViewController{
     }
 }
 
-extension DiaryViewController{
+extension DiaryViewController{     // PlanGroupViewController.swift
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addDiaryContent"{
-            print("addDiaryContent")
+            let diaryContentViewController = segue.destination as! DiaryContentViewController
+            diaryContentViewController.selectedDate = self.selectedDate
         }
     }
 }
@@ -159,11 +167,9 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource{
     
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let realDate = dateFormatter.string(from: date)
-        print(realDate)
+        let formattedDate = dateFormatter.string(from: date)
+        selectedDate = formattedDate
+        print(selectedDate)
     }
         
     // 스와이프로 월이 변경되면 호출된다
