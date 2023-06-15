@@ -9,10 +9,15 @@ import UIKit
 import FSCalendar
 import Lottie
 import Foundation
-
+import Firebase
 
 class DiaryViewController: UIViewController {
     
+    // 감정 단어들을 담을 배열
+    var moodArr: [String] = ["행복", "사랑을 느낌", "평범함", "슬픔", "화남", "감동 받음", "월급날", "기분 최고", "킹받음", "난처함", "너무 웃김", "속상함", "정신없음", "빡공중", "해탈", "축하", "주눅", "못마땅", "머리 아픔", "졸림", "부끄러움", "아픔", "소름", "없음"]
+    // 날씨 단어들을 담을 배열
+    var weatherArr: [String] = ["날씨 좋음", "눈", "비", "태풍", "천둥 번개", "흐림", "폭염", "강추위"]
+   
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var diaryContentView: UIView!
     
@@ -47,10 +52,10 @@ class DiaryViewController: UIViewController {
 
         let formattedDate = dateFormatter.string(from: Date())
         selectedDate = formattedDate
+        
+        fetchFirestoreData(for: selectedDate)
         print(selectedDate)
     
-        noDiaryContainerView.isHidden = false
-        diaryContainerView.isHidden = true
         let image = UIImage(named: "mood2.png")!
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
         moodImgView.image = image
@@ -59,7 +64,6 @@ class DiaryViewController: UIViewController {
         diaryContentView.layer.cornerRadius = 15
         addDiaryBtn.layer.cornerRadius = 15
         moodImgExplainView.layer.cornerRadius = 10
-//        contentView.layer.cornerRadius = 15
         weatherImgExplainView.layer.cornerRadius = 10
         
         guard let jsonPath = Bundle.main.path(forResource: "addDiary", ofType: "json") else {
@@ -101,35 +105,35 @@ class DiaryViewController: UIViewController {
 
 extension DiaryViewController{
     @objc func lockImgViewTapped(_ sender: UITapGestureRecognizer) {
-        guard let lockImgView: UIImageView? = sender.view as! UIImageView else { return }
-        print("lock")
+        guard let lockImgView: UIImageView = sender.view as? UIImageView else { return }
         // lockImgView 이미지 교체 & 내용 가리기 애니메이션 적용
         UIView.animate(withDuration: 0.3) {
             // 현재 잠금 상태라면 잠금해제 후 내용 보이게 하기
-            if lockImgView?.image == UIImage(systemName: "lock.fill") {
-                print("lock1")
-                let image = UIImage(systemName: "lock.open.fill")
-                lockImgView?.image = image
+            if lockImgView.image == UIImage(systemName: "eye.slash.fill") {
+                let image = UIImage(systemName: "eye.fill")
+                lockImgView.image = image
                 
                 self.lockAnimationView.isHidden = true
                 self.contentView.isHidden = false
                 self.moodImgExplainView.isHidden = false
                 self.moodImgView.isHidden = false
                 self.moodImgExplainLabel.isHidden = false
+                self.weatherImgExplainView.isHidden = false
+                self.weatherImgView.isHidden = false
             }
             // 현재 잠금 해제 상태라면 잠금 후 내용 숨기게 하기
             else {
-                print("lock2")
-                let image = UIImage(systemName: "lock.fill")
-                lockImgView?.image = image
+                let image = UIImage(systemName: "eye.slash.fill")
+                lockImgView.image = image
                 
                 self.contentView.isHidden = true
                 self.moodImgExplainView.isHidden = true
                 self.moodImgView.isHidden = true
                 self.moodImgExplainLabel.isHidden = true
+                self.weatherImgExplainView.isHidden = true
+                self.weatherImgView.isHidden = true
                 
                 guard let jsonPath = Bundle.main.path(forResource: "Lock", ofType: "json") else {
-                    print("JSON file not found")
                     return
                 }
 
@@ -170,6 +174,8 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource{
         let formattedDate = dateFormatter.string(from: date)
         selectedDate = formattedDate
         print(selectedDate)
+        
+        fetchFirestoreData(for: selectedDate)
     }
         
     // 스와이프로 월이 변경되면 호출된다
@@ -181,5 +187,47 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource{
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
         
         return nil
+    }
+}
+
+extension DiaryViewController {
+    
+    func fetchFirestoreData(for date: String) {
+        let db = Firestore.firestore()
+        let diaryCollection = db.collection("Diary")
+        
+        diaryCollection.document(date).getDocument { [self] document, error in
+            if let document = document, document.exists {
+                noDiaryContainerView.isHidden = true
+                diaryContainerView.isHidden = false
+                let data = document.data()
+                
+                if let content = data?["content"] as? String,
+                   let mood = data?["mood"] as? String,
+                   let weather = data?["weather"] as? String,
+                   let temperature = data?["temperature"] as? String{
+                    let content = content
+                    let mood = mood
+                    let weather = weather
+                    let temperature = temperature
+                    
+                    let moodImg = UIImage(named: "mood\(self.moodArr.firstIndex(of: mood)! + 1).png")!
+                    let weatherImg = UIImage(named: "weather\(self.weatherArr.firstIndex(of: weather)! + 1).png")!
+                   
+                    DispatchQueue.main.async {
+                        self.moodImgExplainLabel.text = mood
+                        self.weatherExplainLabel.text = weather
+                        self.contentLabel.text = content
+                        self.weatherCLabel.text = temperature
+                        
+                        self.moodImgView.image = moodImg
+                        self.weatherImgView.image = weatherImg
+                    }
+                }
+            } else {
+                noDiaryContainerView.isHidden = false
+                diaryContainerView.isHidden = true
+            }
+        }
     }
 }

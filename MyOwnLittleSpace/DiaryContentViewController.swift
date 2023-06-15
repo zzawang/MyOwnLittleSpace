@@ -10,9 +10,11 @@ import Lottie
 import CoreLocation
 import SwiftyJSON
 import Alamofire
+import Firebase
+
 
 // 반복적인 부분들도 많고 수업에서 배운 것들을 사용하기 위해 programming으로 view 생성
-class DiaryContentViewController: UIViewController {
+class DiaryContentViewController: UIViewController, UITextViewDelegate {
     // moodContainerView들을 담을 배열
     var moodViews: [UIView] = []
     // weatherContainerView들을 담을 배열
@@ -38,18 +40,17 @@ class DiaryContentViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     let apiKey = "3c6dfac13c7fb9b176a407ef82b6a9a5"
-    var temperature: String?  // 현재 기온을 담을 변수
+    var temperature: String!  // 현재 기온을 담을 변수
     
     var weatherLabel: UILabel! // 기온 레이블 (현재 기온을 담기 위해)
     var dateLabel: UILabel! // 날짜 레이블
-    
     var moodImg: UIImage!
     var moodImgView: UIImageView!
-    
     var weatherImg: UIImage!
     var weatherImgView: UIImageView!
     
     var contentTextView: UITextView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,7 +163,7 @@ class DiaryContentViewController: UIViewController {
         // Continue 버튼 생성 및 뷰에 추가
         continueBtn = UIButton(type: .system)
         continueBtn.translatesAutoresizingMaskIntoConstraints = false
-        continueBtn.setTitle("Continue", for: .normal)
+        continueBtn.setTitle("계속", for: .normal)
         continueBtn.backgroundColor = UIColor.black
         continueBtn.layer.cornerRadius = 15
         continueBtn.setTitleColor(.black, for: .normal)
@@ -333,7 +334,6 @@ class DiaryContentViewController: UIViewController {
         
         // contentContainerView의 제약 조건 설정
         NSLayoutConstraint.activate([
-//            contentContainerView.heightAnchor.constraint(equalToConstant: view.frame.height/1.5),
             contentContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             contentContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             contentContainerView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20),
@@ -345,8 +345,12 @@ class DiaryContentViewController: UIViewController {
         contentTextView.textContainer.lineBreakMode = .byWordWrapping
         contentTextView.backgroundColor = .clear
         contentTextView.contentMode = .topLeft
+        contentTextView.tintColor = UIColor.black
         contentTextView.font = UIFont.boldSystemFont(ofSize: 15) // 폰트 크기 설정
         contentContainerView.addSubview(contentTextView)
+        contentTextView.delegate = self
+        contentTextView.isScrollEnabled = true
+        contentTextView.becomeFirstResponder()
 
         // contentTextField의 제약 조건 설정
         NSLayoutConstraint.activate([
@@ -365,13 +369,32 @@ class DiaryContentViewController: UIViewController {
         completeContainerView.isHidden = true
         view.addSubview(completeContainerView)
 
-        // secondContainerView의 제약 조건 설정
+        // completeContainerView의 제약 조건 설정
         NSLayoutConstraint.activate([
             completeContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             completeContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             completeContainerView.topAnchor.constraint(equalTo: view.topAnchor),
             completeContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -90)
         ])
+        
+        let completeView = UIView()
+        completeView.translatesAutoresizingMaskIntoConstraints = false
+        completeContainerView.addSubview(completeView)
+        
+        // completeView의 제약 조건 설정
+        NSLayoutConstraint.activate([
+            completeView.centerXAnchor.constraint(equalTo: completeContainerView.centerXAnchor),
+            completeView.centerYAnchor.constraint(equalTo: completeContainerView.centerYAnchor),
+            completeView.widthAnchor.constraint(equalToConstant: 200),
+            completeView.heightAnchor.constraint(equalToConstant: 200)
+        ])
+        
+        let completeLabel = UILabel()
+        completeLabel.translatesAutoresizingMaskIntoConstraints = false
+        completeLabel.textAlignment = .center
+        completeLabel.font = UIFont.boldSystemFont(ofSize: 24) // 폰트 크기 설정
+        completeLabel.text = "기록 열매 심기 완료!"
+        completeView.addSubview(completeLabel)
                                   
                                   
         guard let jsonPath = Bundle.main.path(forResource: "dancingDiary", ofType: "json") else {
@@ -391,14 +414,17 @@ class DiaryContentViewController: UIViewController {
         dancingDiaryAnimationView.play()
 
         dancingDiaryAnimationView.translatesAutoresizingMaskIntoConstraints = false
-        completeContainerView.addSubview(dancingDiaryAnimationView)
+        completeView.addSubview(dancingDiaryAnimationView)
 
         NSLayoutConstraint.activate([
-            dancingDiaryAnimationView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            dancingDiaryAnimationView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            dancingDiaryAnimationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dancingDiaryAnimationView.widthAnchor.constraint(equalToConstant: 250),
-            dancingDiaryAnimationView.heightAnchor.constraint(equalToConstant: 250)
+            dancingDiaryAnimationView.leadingAnchor.constraint(equalTo: completeView.leadingAnchor),
+            dancingDiaryAnimationView.trailingAnchor.constraint(equalTo: completeView.trailingAnchor),
+            dancingDiaryAnimationView.bottomAnchor.constraint(equalTo: completeLabel.topAnchor, constant: -20),
+            completeLabel.leadingAnchor.constraint(equalTo: completeView.leadingAnchor),
+            completeLabel.trailingAnchor.constraint(equalTo: completeView.trailingAnchor),
+            completeLabel.bottomAnchor.constraint(equalTo: completeView.bottomAnchor),
+            dancingDiaryAnimationView.widthAnchor.constraint(equalToConstant: 200),
+            dancingDiaryAnimationView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
     }
@@ -467,8 +493,6 @@ extension DiaryContentViewController {
 extension DiaryContentViewController {
     @objc func continueBtnClicked() {
         if continueBtn.isEnabled && continueBtn.isUserInteractionEnabled && viewCount == 1 {
-            print("continueBtnClicked1")
-
             // firstContainerView 이동 애니메이션 적용
             UIView.animate(withDuration: 0.6, animations: {
                 self.firstContainerView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
@@ -485,8 +509,6 @@ extension DiaryContentViewController {
         }
         
         if continueBtn.isEnabled && continueBtn.isUserInteractionEnabled && viewCount == 2 {
-            print("continueBtnClicked2")
-
             // secondContainerView 이동 애니메이션 적용
             UIView.animate(withDuration: 0.6, animations: {
                 self.secondContainerView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
@@ -506,17 +528,42 @@ extension DiaryContentViewController {
         }
         
         if continueBtn.isEnabled && continueBtn.isUserInteractionEnabled && viewCount == 3 {
-            print("continueBtnClicked3")
-
+            // 입력한텍스트를 diaryContent에 넣기
+            diaryContent = contentTextView.text
+            print("다이어리 내용 : " + diaryContent)
+            
             // secondContainerView 이동 애니메이션 적용
             UIView.animate(withDuration: 0.6, animations: {
                 self.thirdContainerView.transform = CGAffineTransform(translationX: -self.view.frame.width, y: 0)
             }) { (_) in
                 self.thirdContainerView.isHidden = true
                 self.completeContainerView.isHidden = false
-                self.animateThirdContainerView()
+                self.animateCompleteContainerView()
+                
+                self.continueBtn.setTitle("완료", for: .normal)
                 self.viewCount += 1
             }
+        }
+        
+        if continueBtn.isEnabled && continueBtn.isUserInteractionEnabled && viewCount == 4 {
+            let data: [String: String] = [
+                "content": diaryContent,
+                "mood": clickedMood,
+                "weather": clickedWeather,
+                "temperature" : temperature
+            ]
+                    
+            let db = Firestore.firestore()
+            let diaryCollection = db.collection("Diary")
+                    
+            diaryCollection.document(selectedDate).setData(data) { error in
+                if let error = error {
+                    print("Error saving diary to Firestore: \(error)")
+                } else {
+                    print("Diary saved to Firestore successfully")
+                }
+            }
+            dismiss(animated: true)
         }
     }
     
@@ -541,6 +588,17 @@ extension DiaryContentViewController {
             self.thirdContainerView.transform = .identity
         })
     }
+    
+    // thirdContainerView 등장 애니메이션 적용
+    func animateCompleteContainerView() {
+        completeContainerView.alpha = 0
+        completeContainerView.transform = CGAffineTransform(translationX: self.view.frame.width, y: 0)
+
+        UIView.animate(withDuration: 0.6, animations: {
+            self.completeContainerView.alpha = 1
+            self.completeContainerView.transform = .identity
+        })
+    }
 }
 
 // HEX 색상 코드를 사용하여 색상을 커스텀하기 위해 UIColor 클래스를 확장하여 사용
@@ -563,18 +621,25 @@ extension UIColor {
 }
 
 extension DiaryContentViewController {
+    struct WeatherResponse: Codable {
+        struct Main: Codable {
+            let temp: Double
+        }
+        
+        let main: Main
+    }
+    
     func requestWeather(latitude: Double, longitude: Double) {
         let url = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)"
         
-        AF.request(url).responseJSON { [weak self] response in
+        AF.request(url).responseDecodable(of: WeatherResponse.self) { [weak self] response in
             guard let self = self else { return }
             
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                let celsiusValue = json["main"]["temp"].doubleValue - 273
+                let celsiusValue = value.main.temp - 273
                 self.temperature = String(Int(celsiusValue))
-                print(self.temperature)
+                print(self.temperature!)
                 self.weatherLabel.text = "현재 기온 : " + (self.temperature ?? "") + "℃"
                 
             case .failure(let error):
@@ -583,6 +648,7 @@ extension DiaryContentViewController {
         }
     }
 }
+
 
 extension DiaryContentViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -602,11 +668,33 @@ extension DiaryContentViewController {
     func changeViews(){
         self.dateLabel.text = selectedDate
         
-        // mood, weather 이미지
+        // 선택한 mood, weather 이미지로 설정
         self.moodImg = UIImage(named: "mood\(moodArr.firstIndex(of: clickedMood)! + 1).png")!
         self.moodImgView.image = moodImg
 
         self.weatherImg = UIImage(named: "weather\(weatherArr.firstIndex(of: clickedWeather)! + 1).png")!
         self.weatherImgView.image = weatherImg
+    }
+}
+
+extension DiaryContentViewController {
+    // 입력이 감지되는 메서드
+    func textViewDidChange(_ textView: UITextView) {
+        // 입력된 텍스트
+        let inputText:String = textView.text
+        if inputText != "" {
+            UIView.animate(withDuration: 0.3) {
+                self.continueBtn.alpha = 1
+                self.continueBtn.isEnabled = true
+                self.continueBtn.isUserInteractionEnabled = true
+            }
+        }
+        else{
+            UIView.animate(withDuration: 0.3) {
+                self.continueBtn.alpha = 0.3
+                self.continueBtn.isEnabled = false
+                self.continueBtn.isUserInteractionEnabled = false
+            }
+        }
     }
 }
