@@ -28,9 +28,10 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryContainerView: UIView!
     @IBOutlet weak var moodImgExplainView: UIView!
     @IBOutlet weak var moodImgView: UIImageView!
+    @IBOutlet weak var todayIsLabel: UILabel!
     @IBOutlet weak var moodImgExplainLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentTextView: UITextView!
     
     @IBOutlet weak var weatherImgExplainView: UIView!
     @IBOutlet weak var weatherCLabel: UILabel!
@@ -40,25 +41,26 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var lockImgView: UIImageView!
     @IBOutlet weak var lockAnimationView: LottieAnimationView!
     
+    @IBOutlet weak var trashImgView: UIImageView!
+    @IBOutlet weak var modifyImgView: UIImageView!
+    
     var dateFormatter:DateFormatter!
     var selectedDate:String = "" // 현재 선택된 날짜
+    
+    let greenColor = UIColor(hex: "#008F00") // 커스텀한 색상 정의
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일" // 년, 월, 일로 포맷 지정
         dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul") // 대한민국 시간대 (Asia/Seoul)
 
-        let formattedDate = dateFormatter.string(from: Date())
-        selectedDate = formattedDate
+        // 현재 날짜를 selectedDate에 넣기
+        selectedDate = dateFormatter.string(from: Date())
         
+        // FireStore에서 데이터 가져오기
         fetchFirestoreData(for: selectedDate)
-        print(selectedDate)
-    
-        let image = UIImage(named: "mood2.png")!
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-        moodImgView.image = image
         
         // Object들의 모서리 둥글기 설정
         diaryContentView.layer.cornerRadius = 15
@@ -66,17 +68,17 @@ class DiaryViewController: UIViewController {
         moodImgExplainView.layer.cornerRadius = 10
         weatherImgExplainView.layer.cornerRadius = 10
         
+        // JSON 파일
         guard let jsonPath = Bundle.main.path(forResource: "addDiary", ofType: "json") else {
             print("JSON file not found")
             return
         }
 
         // JSON 파일을 로드하여 애니메이션 뷰에 설정
-        let animation = LottieAnimation.filepath(jsonPath)
-        animationView.animation = animation
+        animationView.animation = LottieAnimation.filepath(jsonPath)
 
         // 애니메이션 재생
-        animationView.loopMode = .loop
+        animationView.loopMode = .loop  // 애니메이션 반복 재생
         animationView.animationSpeed = 1
         animationView.play()
         
@@ -84,7 +86,6 @@ class DiaryViewController: UIViewController {
         calendarView.dataSource = self
         
         calendarView.scope = .week   // 범위를 주간으로 설정
-//        calendarView.scope = .month  // 범위를 월간으로 설정
         calendarView.locale = Locale(identifier: "ko_KR") // 언어를 한국어로 설정
         calendarView.firstWeekday = 2  // 첫 열을 월요일로 설정
         calendarView.scrollDirection = .horizontal  // 스크롤 방향을 가로로
@@ -96,10 +97,20 @@ class DiaryViewController: UIViewController {
         calendarView.headerHeight = 50 // 헤더 높이 설정
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0 // 헤더 양 옆(전달 & 다음 달) 글씨 안 보이도록
         
-        // lock을 클릭했을 때 내용이 안보이도록 lockImgView에 탭 제스처 등록
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(lockImgViewTapped(_:)))
+        // lockImgView를 클릭했을 때 내용이 안보이도록 lockImgView에 탭 제스처 등록
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(lockImgViewTapped(_:)))
         lockImgView.isUserInteractionEnabled = true // 사용자 상호작용 가능하도록 설정
-        lockImgView.addGestureRecognizer(tapGesture)
+        lockImgView.addGestureRecognizer(tapGesture1)
+        
+        // modifyImgView를 클릭했을 때 내용이 수정되도록 lockImgView에 탭 제스처 등록
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(modifyImgViewTapped(_:)))
+        modifyImgView.isUserInteractionEnabled = true // 사용자 상호작용 가능하도록 설정
+        modifyImgView.addGestureRecognizer(tapGesture2)
+        
+        // trashImgView를 클릭했을 때 내용이 삭제되도록 lockImgView에 탭 제스처 등록
+        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(trashImgViewTapped(_:)))
+        trashImgView.isUserInteractionEnabled = true // 사용자 상호작용 가능하도록 설정
+        trashImgView.addGestureRecognizer(tapGesture3)
     }
 }
 
@@ -107,45 +118,108 @@ extension DiaryViewController{
     @objc func lockImgViewTapped(_ sender: UITapGestureRecognizer) {
         guard let lockImgView: UIImageView = sender.view as? UIImageView else { return }
         // lockImgView 이미지 교체 & 내용 가리기 애니메이션 적용
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3) { [self] in
             // 현재 잠금 상태라면 잠금해제 후 내용 보이게 하기
             if lockImgView.image == UIImage(systemName: "eye.slash.fill") {
-                let image = UIImage(systemName: "eye.fill")
-                lockImgView.image = image
+                lockImgView.image = UIImage(systemName: "eye.fill")
                 
-                self.lockAnimationView.isHidden = true
-                self.contentView.isHidden = false
-                self.moodImgExplainView.isHidden = false
-                self.moodImgView.isHidden = false
-                self.moodImgExplainLabel.isHidden = false
-                self.weatherImgExplainView.isHidden = false
-                self.weatherImgView.isHidden = false
+                lockAnimationView.isHidden = true
+                contentView.isHidden = false
+                moodImgExplainView.isHidden = false
+                moodImgView.isHidden = false
+                moodImgExplainLabel.isHidden = false
+                weatherImgExplainView.isHidden = false
+                weatherImgView.isHidden = false
+                trashImgView.isHidden = false
             }
-            // 현재 잠금 해제 상태라면 잠금 후 내용 숨기게 하기
-            else {
-                let image = UIImage(systemName: "eye.slash.fill")
-                lockImgView.image = image
+            else { // 현재 잠금 해제 상태라면 잠금 후 내용 숨기게 하기
+                lockImgView.image = UIImage(systemName: "eye.slash.fill")
                 
-                self.contentView.isHidden = true
-                self.moodImgExplainView.isHidden = true
-                self.moodImgView.isHidden = true
-                self.moodImgExplainLabel.isHidden = true
-                self.weatherImgExplainView.isHidden = true
-                self.weatherImgView.isHidden = true
+                contentView.isHidden = true
+                moodImgExplainView.isHidden = true
+                moodImgView.isHidden = true
+                moodImgExplainLabel.isHidden = true
+                weatherImgExplainView.isHidden = true
+                weatherImgView.isHidden = true
+                trashImgView.isHidden = true
                 
+                // JSON 파일
                 guard let jsonPath = Bundle.main.path(forResource: "Lock", ofType: "json") else {
                     return
                 }
 
-                // JSON 파일을 로드하여 락 애니메이션 뷰에 설정
-                let animation = LottieAnimation.filepath(jsonPath)
-                self.lockAnimationView.animation = animation
+                // JSON 파일을 로드하여 lockAnimationView에 설정
+                lockAnimationView.animation = LottieAnimation.filepath(jsonPath)
+                
+                lockAnimationView.isHidden = false
 
                 // 애니메이션 재생
-                self.lockAnimationView.loopMode = .playOnce
-                self.lockAnimationView.animationSpeed = 1
-                self.lockAnimationView.isHidden = false
-                self.lockAnimationView.play()
+                lockAnimationView.loopMode = .playOnce  // 애니메이션 한 번만 재생
+                lockAnimationView.animationSpeed = 1
+                lockAnimationView.play()
+            }
+        }
+    }
+}
+
+extension DiaryViewController {
+    @objc func modifyImgViewTapped(_ sender: UITapGestureRecognizer) {
+        // 애니메이션 적용
+        UIView.animate(withDuration: 0.2, animations: { [self] in
+            modifyImgView.alpha = 0.0
+        }, completion: { [self] _ in
+            if modifyImgView.image == UIImage(systemName: "pencil") {
+                modifyImgView.tintColor = greenColor
+                modifyImgView.image = UIImage(systemName: "checkmark")
+                contentTextView.isSelectable = true
+                contentTextView.isEditable = true
+                contentTextView.tintColor = .black
+                contentTextView.becomeFirstResponder()  // 커서 깜빡이도록
+            }
+            else{
+                modifyImgView.tintColor = .darkGray
+                modifyImgView.image = UIImage(systemName: "pencil")
+                contentTextView.isSelectable = false
+                contentTextView.isEditable = false
+                
+                // 새로 작성한 다이어리 내용을 Firestore에 업데이트
+                let updateContent:String = contentTextView.text
+                let documentRef = Firestore.firestore().collection("Diary").document(selectedDate)
+
+                documentRef.updateData(["content": updateContent]) { error in
+                    if error != nil {
+                        print("다이어리 내용 업데이트 중 에러 발생")
+                    } else {
+                        print("다이어리 내용 업데이트 성공")
+                    }
+                }
+            }
+            UIView.animate(withDuration: 0.2) { [self] in
+                modifyImgView.alpha = 1.0
+            }
+        })
+    }
+}
+
+extension DiaryViewController {
+    @objc func trashImgViewTapped(_ sender: UITapGestureRecognizer) {
+        let documentRef = Firestore.firestore().collection("Diary").document(selectedDate)
+
+        documentRef.delete { error in
+            if error != nil { // 실패
+                print("다이어리 내용 삭제 중 에러 발생")
+            } else { // 성공 & 애니메이션 적용
+                UIView.animate(withDuration: 0.3, animations: { [self] in
+                    diaryContainerView.alpha = 0.0
+                }, completion: { [self] _ in
+                    diaryContainerView.isHidden = true
+                    noDiaryContainerView.alpha = 0.0
+                    noDiaryContainerView.isHidden = false
+
+                    UIView.animate(withDuration: 0.3) { [self] in
+                        noDiaryContainerView.alpha = 1.0
+                    }
+                })
             }
         }
     }
@@ -158,48 +232,32 @@ extension DiaryViewController{
     }
 }
 
-extension DiaryViewController{     // PlanGroupViewController.swift
+extension DiaryViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addDiaryContent"{
             let diaryContentViewController = segue.destination as! DiaryContentViewController
+            // diaryContentViewController의 selectedDate로 지정
             diaryContentViewController.selectedDate = self.selectedDate
+            // diaryContentViewController의 delegate를 self로 지정
+            diaryContentViewController.delegate = self
         }
     }
 }
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource{
-    
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let formattedDate = dateFormatter.string(from: date)
-        selectedDate = formattedDate
-        print(selectedDate)
-        
-        fetchFirestoreData(for: selectedDate)
-    }
-        
-    // 스와이프로 월이 변경되면 호출된다
-    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        
-    }
-        
-    // 이함수를 fsCalendar.reloadData()에 의하여 모든 날짜에 대하여 호출된다.
-    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-        
-        return nil
+        selectedDate = dateFormatter.string(from: date)
+        fetchFirestoreData(for: selectedDate)  // 현재 선택된 날짜의 데이터를 Firestore에서 가져오기
     }
 }
 
 extension DiaryViewController {
-    
     func fetchFirestoreData(for date: String) {
-        let db = Firestore.firestore()
-        let diaryCollection = db.collection("Diary")
+        let diaryCollection = Firestore.firestore().collection("Diary")
         
         diaryCollection.document(date).getDocument { [self] document, error in
-            if let document = document, document.exists {
-                noDiaryContainerView.isHidden = true
-                diaryContainerView.isHidden = false
+            if let document = document, document.exists { // 데이터가 존재하면
                 let data = document.data()
                 
                 if let content = data?["content"] as? String,
@@ -211,23 +269,54 @@ extension DiaryViewController {
                     let weather = weather
                     let temperature = temperature
                     
-                    let moodImg = UIImage(named: "mood\(self.moodArr.firstIndex(of: mood)! + 1).png")!
-                    let weatherImg = UIImage(named: "weather\(self.weatherArr.firstIndex(of: weather)! + 1).png")!
-                   
-                    DispatchQueue.main.async {
-                        self.moodImgExplainLabel.text = mood
-                        self.weatherExplainLabel.text = weather
-                        self.contentLabel.text = content
-                        self.weatherCLabel.text = temperature
-                        
-                        self.moodImgView.image = moodImg
-                        self.weatherImgView.image = weatherImg
-                    }
+                    didUpdateDiaryContent(content: content, mood: mood, weather: weather, temperature: temperature)
                 }
-            } else {
-                noDiaryContainerView.isHidden = false
-                diaryContainerView.isHidden = true
+            } else { // 데이터가 존재하지 않으면
+                UIView.animate(withDuration: 0.1, animations: { [self] in
+                    diaryContainerView.alpha = 0.0
+                }, completion: { [self] _ in
+                    diaryContainerView.isHidden = true
+                    noDiaryContainerView.alpha = 0.0
+                    noDiaryContainerView.isHidden = false
+
+                    UIView.animate(withDuration: 0.1) { [self] in
+                        noDiaryContainerView.alpha = 1.0
+                    }
+                })
             }
+        }
+    }
+}
+
+protocol DiaryViewControllerDelegate: AnyObject {
+    func didUpdateDiaryContent(content: String, mood: String, weather: String, temperature: String)
+}
+
+extension DiaryViewController: DiaryViewControllerDelegate {
+    // Firestore에서 가져온 데이터를 화면에 보여준다.
+    func didUpdateDiaryContent(content: String, mood: String, weather: String, temperature: String) {
+        let moodImg = UIImage(named: "mood\(self.moodArr.firstIndex(of: mood)! + 1).png")!
+        let weatherImg = UIImage(named: "weather\(self.weatherArr.firstIndex(of: weather)! + 1).png")!
+       
+        // 다이어리 내용이 보여질 때의 애니메이션
+        DispatchQueue.main.async { [self] in
+            UIView.animate(withDuration: 0.1, animations: { [self] in
+                noDiaryContainerView.alpha = 0.0
+            }, completion: { [self] _ in
+                noDiaryContainerView.isHidden = true
+                todayIsLabel.text = "오늘 하루는 "
+                moodImgExplainLabel.text = mood
+                weatherExplainLabel.text = weather
+                contentTextView.text = content
+                weatherCLabel.text = temperature + "도, "
+                moodImgView.image = moodImg
+                weatherImgView.image = weatherImg
+                
+                UIView.animate(withDuration: 0.1) { [self] in
+                    diaryContainerView.alpha = 1.0
+                    diaryContainerView.isHidden = false
+                }
+            })
         }
     }
 }
