@@ -74,6 +74,11 @@
 		AAC2BFA92A3754A8002E1263 /* weather8.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFA22A3754A8002E1263 /* weather8.png */; };
 		AAC2BFAB2A3785CF002E1263 /* dancingDiary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */; };
 		AAC2BFAD2A378D60002E1263 /* weather4.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFAC2A378D60002E1263 /* weather4.png */; };
+		AAC2BFBA2A3E37ED002E1263 /* foundOOTD.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */; };
+		AAC2BFBB2A3E37ED002E1263 /* ootd.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFB92A3E37ED002E1263 /* ootd.json */; };
+		AAC2BFBD2A3EFD74002E1263 /* OOTDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */; };
+		AAC2BFBF2A3F1FD6002E1263 /* OOTDLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */; };
+		AAC2BFC12A3F2247002E1263 /* OOTDLibraryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +136,11 @@
 		AAC2BFA22A3754A8002E1263 /* weather8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather8.png; sourceTree = "<group>"; };
 		AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dancingDiary.json; sourceTree = "<group>"; };
 		AAC2BFAC2A378D60002E1263 /* weather4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather4.png; sourceTree = "<group>"; };
+		AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foundOOTD.json; sourceTree = "<group>"; };
+		AAC2BFB92A3E37ED002E1263 /* ootd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ootd.json; sourceTree = "<group>"; };
+		AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDViewController.swift; sourceTree = "<group>"; };
+		AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDLibraryViewController.swift; sourceTree = "<group>"; };
+		AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDLibraryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +193,9 @@
 				AA59AB0A2A237A2C00CBF9AE /* TabBarController.swift */,
 				AA59AAFA2A2365BD00CBF9AE /* MainViewController.swift */,
 				AA59AAC92A2361F600CBF9AE /* WeatherViewController.swift */,
+				AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */,
+				AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */,
+				AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */,
 				AA59AB082A2376DC00CBF9AE /* DiaryViewController.swift */,
 				AAC2BF962A349FE9002E1263 /* DiaryContentViewController.swift */,
 				AA59AACB2A2361F600CBF9AE /* Main.storyboard */,
@@ -194,6 +207,8 @@
 				AAC2BF982A350884002E1263 /* addDiary.json */,
 				AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */,
 				AAC2BF9A2A35FAEF002E1263 /* Lock.json */,
+				AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */,
+				AAC2BFB92A3E37ED002E1263 /* ootd.json */,
 				AA59AB012A236D4C00CBF9AE /* plant1.json */,
 				AA59AAFE2A236D4C00CBF9AE /* plant2.json */,
 				AA59AB002A236D4C00CBF9AE /* plant3.json */,
@@ -325,6 +340,7 @@
 				AAC2BF8A2A3499BF002E1263 /* mood16.png in Resources */,
 				AAC2BF992A350884002E1263 /* addDiary.json in Resources */,
 				AAC2BF7A2A3497C7002E1263 /* mood11.png in Resources */,
+				AAC2BFBA2A3E37ED002E1263 /* foundOOTD.json in Resources */,
 				AAC2BFAD2A378D60002E1263 /* weather4.png in Resources */,
 				AAC2BF7B2A3497C7002E1263 /* mood10.png in Resources */,
 				AAC2BF732A349129002E1263 /* mood8.png in Resources */,
@@ -355,6 +371,7 @@
 				AAC2BF922A3499BF002E1263 /* mood15.png in Resources */,
 				AAC2BF8E2A3499BF002E1263 /* mood19.png in Resources */,
 				AAC2BF902A3499BF002E1263 /* mood22.png in Resources */,
+				AAC2BFBB2A3E37ED002E1263 /* ootd.json in Resources */,
 				AAC2BF892A3499BF002E1263 /* mood17.png in Resources */,
 				AAC2BFAB2A3785CF002E1263 /* dancingDiary.json in Resources */,
 				AA59AB072A236D4C00CBF9AE /* plant5.json in Resources */,
@@ -372,13 +389,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC2BFBD2A3EFD74002E1263 /* OOTDViewController.swift in Sources */,
 				AA59AACA2A2361F600CBF9AE /* WeatherViewController.swift in Sources */,
 				AAC2BF972A349FE9002E1263 /* DiaryContentViewController.swift in Sources */,
+				AAC2BFC12A3F2247002E1263 /* OOTDLibraryDetailViewController.swift in Sources */,
 				AA59AB092A2376DC00CBF9AE /* DiaryViewController.swift in Sources */,
 				AA59AAC62A2361F600CBF9AE /* AppDelegate.swift in Sources */,
 				AA59AB0B2A237A2C00CBF9AE /* TabBarController.swift in Sources */,
 				AA59AAC82A2361F600CBF9AE /* SceneDelegate.swift in Sources */,
 				AA59AAFB2A2365BD00CBF9AE /* MainViewController.swift in Sources */,
+				AAC2BFBF2A3F1FD6002E1263 /* OOTDLibraryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -508,7 +528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

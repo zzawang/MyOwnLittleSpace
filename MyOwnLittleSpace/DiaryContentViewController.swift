@@ -277,7 +277,7 @@ class DiaryContentViewController: UIViewController, UITextViewDelegate {
         thirdContainerView.backgroundColor = yellowColor
         thirdContainerView.isHidden = true
         view.addSubview(thirdContainerView)
-
+        
         // thirdContainerView의 제약 조건 설정
         NSLayoutConstraint.activate([
             thirdContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -339,9 +339,11 @@ class DiaryContentViewController: UIViewController, UITextViewDelegate {
         contentTextView.tintColor = UIColor.black
         contentTextView.font = UIFont.boldSystemFont(ofSize: 15) // 폰트 크기 설정
         contentTextView.delegate = self
-        contentTextView.isScrollEnabled = true
-        contentTextView.becomeFirstResponder()  // 커서 깜빡이도록
+        contentTextView.isEditable = false
         contentContainerView.addSubview(contentTextView)
+        
+        let contentTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        contentTextView.addGestureRecognizer(contentTapGesture)
 
         // contentTextView의 제약 조건 설정
         NSLayoutConstraint.activate([
@@ -515,6 +517,10 @@ extension DiaryContentViewController {
                 
                 // 현재 날짜를 레이블에 나타내고 선택했던 mood와 weather의 이미지로 이미지뷰를 설정
                 changeViews()
+                
+                contentTextView.isEditable = true
+                contentTextView.isScrollEnabled = true
+                contentTextView.becomeFirstResponder()  // 커서 깜빡이도록
             }
         }
         // 세번째 페이지에서 마지막 페이지로 이동
@@ -627,7 +633,7 @@ extension DiaryContentViewController: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         manager.stopUpdatingLocation()
         let latitude = location.coordinate.latitude
-        let longitude = -location.coordinate.longitude
+        let longitude = location.coordinate.longitude
         requestWeather(latitude: latitude, longitude: longitude)
     }
     
@@ -668,6 +674,17 @@ extension DiaryContentViewController {
                 continueBtn.isEnabled = false
                 continueBtn.isUserInteractionEnabled = false
             }
+        }
+    }
+}
+
+extension DiaryContentViewController{
+    @objc func dismissKeyboard(sender: UITapGestureRecognizer){
+        if contentTextView.isFirstResponder {
+            contentTextView.resignFirstResponder()
+        }
+        else{
+            contentTextView.becomeFirstResponder()
         }
     }
 }

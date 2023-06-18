@@ -34,6 +34,13 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         getDocCount() // Document 개수 가져오기
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        diaryCount.text = ""
+        diaryLevel.text = ""
+        animationView.animation = nil
+    }
 }
 
 extension MainViewController{
@@ -89,7 +96,7 @@ extension MainViewController{
             animationView.animationSpeed = 0.8
             animationView.play()
         }
-        else if docCount >= 5 && docCount < 6 {  // 다이어리가 5개 일때
+        else if docCount >= 5 {  // 다이어리가 5개 이상일때
             // diaryLevel 설정
             diaryLevel.text = "Lv.5"
             

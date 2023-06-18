@@ -68,6 +68,9 @@ class DiaryViewController: UIViewController {
         moodImgExplainView.layer.cornerRadius = 10
         weatherImgExplainView.layer.cornerRadius = 10
         
+        let contentTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        contentTextView.addGestureRecognizer(contentTapGesture)
+        
         // JSON 파일
         guard let jsonPath = Bundle.main.path(forResource: "addDiary", ofType: "json") else {
             print("JSON file not found")
@@ -131,6 +134,7 @@ extension DiaryViewController{
                 weatherImgExplainView.isHidden = false
                 weatherImgView.isHidden = false
                 trashImgView.isHidden = false
+                modifyImgView.isHidden = false
             }
             else { // 현재 잠금 해제 상태라면 잠금 후 내용 숨기게 하기
                 lockImgView.image = UIImage(systemName: "eye.slash.fill")
@@ -142,6 +146,7 @@ extension DiaryViewController{
                 weatherImgExplainView.isHidden = true
                 weatherImgView.isHidden = true
                 trashImgView.isHidden = true
+                modifyImgView.isHidden = true
                 
                 // JSON 파일
                 guard let jsonPath = Bundle.main.path(forResource: "Lock", ofType: "json") else {
@@ -317,6 +322,17 @@ extension DiaryViewController: DiaryViewControllerDelegate {
                     diaryContainerView.isHidden = false
                 }
             })
+        }
+    }
+}
+
+extension DiaryViewController{
+    @objc func dismissKeyboard(sender: UITapGestureRecognizer){
+        if contentTextView.isFirstResponder {
+            contentTextView.resignFirstResponder()
+        }
+        else{
+            contentTextView.becomeFirstResponder()
         }
     }
 }
