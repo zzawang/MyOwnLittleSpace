@@ -9,7 +9,6 @@ import UIKit
 import CoreLocation
 import Alamofire
 import SwiftyJSON
-import Firebase
 import Lottie
 
 class WeatherViewController: UIViewController {

@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Launch되는 동안 실행할 애니메이션 지정
+        // 실행할 애니메이션 지정
         animationView = LottieAnimationView(name: "launchGIF")
         animationView.backgroundColor = .white
         animationView.frame = view.bounds
