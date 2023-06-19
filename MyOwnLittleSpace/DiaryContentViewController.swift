@@ -339,7 +339,7 @@ class DiaryContentViewController: UIViewController, UITextViewDelegate {
         contentTextView.tintColor = UIColor.black
         contentTextView.font = UIFont.boldSystemFont(ofSize: 15) // 폰트 크기 설정
         contentTextView.delegate = self
-        contentTextView.isEditable = false
+        contentTextView.isEditable = false  // 다른 페이지에 있을 때는 입력 불가능하도록 설정
         contentContainerView.addSubview(contentTextView)
         
         let contentTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -520,7 +520,7 @@ extension DiaryContentViewController {
                 
                 contentTextView.isEditable = true
                 contentTextView.isScrollEnabled = true
-                contentTextView.becomeFirstResponder()  // 커서 깜빡이도록
+                contentTextView.becomeFirstResponder()  // 두번째 페이지에서 세번째 페이지로 이동할 때만 커서 깜빡이도록
             }
         }
         // 세번째 페이지에서 마지막 페이지로 이동
@@ -678,6 +678,7 @@ extension DiaryContentViewController {
     }
 }
 
+// contentTextView를 터치할 때 키보드가 나타나거나 사라지도록 설정
 extension DiaryContentViewController{
     @objc func dismissKeyboard(sender: UITapGestureRecognizer){
         if contentTextView.isFirstResponder {

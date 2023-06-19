@@ -9,30 +9,27 @@ import UIKit
 import Lottie
 
 class TabBarController: UITabBarController {
-
-    private let animationView: LottieAnimationView = {
-        let lottieAnimationView = LottieAnimationView(name: "launchGIF")
-        lottieAnimationView.backgroundColor = .white
-        return lottieAnimationView
-    }()
-    
- 
+    var animationView: LottieAnimationView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(animationView)
-
+        // Launch되는 동안 실행할 애니메이션 지정
+        animationView = LottieAnimationView(name: "launchGIF")
+        animationView.backgroundColor = .white
         animationView.frame = view.bounds
-        animationView.center = view.center
+        animationView.center = view.center  // 애니메이션을 뷰의 정가운데로
         animationView.alpha = 1
         animationView.animationSpeed = 1
+        view.addSubview(animationView)
 
+        // 애니메이션의 구간과 시간을 지정
         animationView.play(fromProgress: 0.3, toProgress: 0.9) { _ in
-            UIView.animate(withDuration: 0.3, animations: {
-                self.animationView.alpha = 0
-            }, completion: { _ in
-                self.animationView.isHidden = true
-                self.animationView.removeFromSuperview()
+            UIView.animate(withDuration: 0.3, animations: { [self] in
+                animationView.alpha = 0
+            }, completion: { [self] _ in
+                // 애니메이션이 끝나면 사라지도록
+                animationView.isHidden = true
+                animationView.removeFromSuperview()
             })
         }
     }

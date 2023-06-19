@@ -79,6 +79,7 @@
 		AAC2BFBD2A3EFD74002E1263 /* OOTDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */; };
 		AAC2BFBF2A3F1FD6002E1263 /* OOTDLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */; };
 		AAC2BFC12A3F2247002E1263 /* OOTDLibraryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */; };
+		AAC2BFC32A3F50C4002E1263 /* savePhoto.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFC22A3F50C4002E1263 /* savePhoto.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +142,7 @@
 		AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDViewController.swift; sourceTree = "<group>"; };
 		AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDLibraryViewController.swift; sourceTree = "<group>"; };
 		AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDLibraryDetailViewController.swift; sourceTree = "<group>"; };
+		AAC2BFC22A3F50C4002E1263 /* savePhoto.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = savePhoto.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				AA59AAFC2A2366DB00CBF9AE /* launchGIF.json */,
 				AAC2BF982A350884002E1263 /* addDiary.json */,
 				AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */,
+				AAC2BFC22A3F50C4002E1263 /* savePhoto.json */,
 				AAC2BF9A2A35FAEF002E1263 /* Lock.json */,
 				AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */,
 				AAC2BFB92A3E37ED002E1263 /* ootd.json */,
@@ -379,6 +382,7 @@
 				AA59AB052A236D4C00CBF9AE /* plant3.json in Resources */,
 				AAC2BF6B2A337D1A002E1263 /* mood4.png in Resources */,
 				AAC2BF8C2A3499BF002E1263 /* mood14.png in Resources */,
+				AAC2BFC32A3F50C4002E1263 /* savePhoto.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

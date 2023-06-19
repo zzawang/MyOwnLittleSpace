@@ -210,6 +210,7 @@ extension DiaryViewController {
     @objc func trashImgViewTapped(_ sender: UITapGestureRecognizer) {
         let documentRef = Firestore.firestore().collection("Diary").document(selectedDate)
 
+        // Document 삭제
         documentRef.delete { error in
             if error != nil { // 실패
                 print("다이어리 내용 삭제 중 에러 발생")
@@ -326,6 +327,7 @@ extension DiaryViewController: DiaryViewControllerDelegate {
     }
 }
 
+// contentTextView를 터치할 때 키보드가 나타나거나 사라지도록 설정
 extension DiaryViewController{
     @objc func dismissKeyboard(sender: UITapGestureRecognizer){
         if contentTextView.isFirstResponder {

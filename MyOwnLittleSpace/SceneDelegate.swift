@@ -18,10 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        FirebaseApp.configure() // 연결을 시작한다
-        
-//        // 연결을 확인하기 위하여 테스트 데이터를 write해 본다
-//        Firestore.firestore().collection("hobinchoi").document("key").setData(["name": "hobinchoi"])
+        FirebaseApp.configure() // 연결 시작
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

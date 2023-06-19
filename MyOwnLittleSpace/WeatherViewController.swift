@@ -23,11 +23,18 @@ class WeatherViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     let apiKey = "3c6dfac13c7fb9b176a407ef82b6a9a5"
-    var temperature: String!  // 현재 기온을 담을 변수
+    
+    var temperature: String = ""  // 현재 기온을 담을 변수
     var image: UIImage! // 전달할 이미지
+    var activityIndicator: UIActivityIndicatorView!  // 로딩 화면으로 사용할 인디케이터
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 로딩 화면에 사용할 인디케이터 초기화
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
         
         // Object들의 모서리 둥글기 설정
         takePhotoBtn.layer.cornerRadius = 15
@@ -51,6 +58,16 @@ class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // 인디케이터 시작
+        activityIndicator.startAnimating()
+        
+        // 로딩되는 동안 다른 버튼이 눌려지지 않도록
+        takePhotoBtn.isEnabled = false
+        takePhotoBtn.isUserInteractionEnabled = false
+        selectPhotoBtn.isEnabled = false
+        selectPhotoBtn.isUserInteractionEnabled = false
+        lookOOTDBtn.isEnabled = false
+        lookOOTDBtn.isUserInteractionEnabled = false
         
         cLabel.text = " " // 이미지의 contraint가 cLabel과 연결되어 있기 때문에 빈칸을 삽입해준다.
         ootdLabel.text = " "
@@ -58,12 +75,6 @@ class WeatherViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        cLabel.text = " "
-        ootdLabel.text = " "
     }
 }
 
@@ -121,10 +132,12 @@ extension WeatherViewController {
             guard let ootdViewController = segue.destination as? OOTDViewController else {
                 return
             }
+            // ootdViewController에 찍거나 선택한 이미지와 현재 온도를 전달
             ootdViewController.image = image
+            ootdViewController.temperature = temperature
         }
         if segue.identifier == "showLibrary" {
-            guard let ootdLibraryViewController = segue.destination as? OOTDLibraryViewController else {
+            guard segue.destination is OOTDLibraryViewController else {
                 return
             }
         }
@@ -147,7 +160,17 @@ extension WeatherViewController {
             case .success(let value):
                 let celsiusValue = value.main.temp - 273
                 temperature = String(Int(celsiusValue))
-                recommendOutfit()
+                // 현재 온도에 따라 라벨의 text를 변경
+                recommendOOTD()
+                // Label에 텍스트가 다 들어가면 인디케이터 숨김
+                activityIndicator.stopAnimating()
+                // 버튼 다시 활성화
+                takePhotoBtn.isEnabled = true
+                takePhotoBtn.isUserInteractionEnabled = true
+                selectPhotoBtn.isEnabled = true
+                selectPhotoBtn.isUserInteractionEnabled = true
+                lookOOTDBtn.isEnabled = true
+                lookOOTDBtn.isUserInteractionEnabled = true
                 
             case .failure(let error):
                 print("requestWeather 에러 : \(error)")
@@ -162,7 +185,6 @@ extension WeatherViewController: CLLocationManagerDelegate {
         manager.stopUpdatingLocation()
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-        print(latitude, longitude)
         requestWeather(latitude: latitude, longitude: longitude)
     }
     
@@ -172,8 +194,8 @@ extension WeatherViewController: CLLocationManagerDelegate {
 }
 
 extension WeatherViewController {
-    func recommendOutfit(){
-        cLabel.text = "현재 기온 : \(temperature!)℃"
+    func recommendOOTD(){
+        cLabel.text = "현재 기온 : \(temperature)℃"
         let temp:Int = Int(temperature)!
         
         if temp >= 24 {

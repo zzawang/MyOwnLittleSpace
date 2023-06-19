@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var diaryCount: UILabel!
     @IBOutlet weak var diaryLevel: UILabel!
     
+    // 애니메이션 JSON 파일 경로
     let jsonPath1 = Bundle.main.path(forResource: "plant1", ofType: "json")
     let jsonPath2 = Bundle.main.path(forResource: "plant2", ofType: "json")
     let jsonPath3 = Bundle.main.path(forResource: "plant3", ofType: "json")
@@ -32,14 +33,30 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getDocCount() // Document 개수 가져오기
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        
+        // 이전 내용이 보이지 않도록 초기화
         diaryCount.text = ""
         diaryLevel.text = ""
         animationView.animation = nil
+        
+        getDocCount() // Document 개수 가져오기
+    }
+}
+
+extension MainViewController {
+    func getDocCount(){
+        let collectionRef = Firestore.firestore().collection("Diary")
+
+        collectionRef.getDocuments { [self] (snapshot, error) in
+            if error != nil {
+                print("Document를 가져오는 중 에러 발생")
+            } else {
+                if let snapshot = snapshot {
+                    docCount = snapshot.documents.count // Diary collection에 있는 document 개수
+                    updateAnimation() // 애니메이션 업데이트
+                }
+            }
+        }
     }
 }
 
@@ -107,24 +124,6 @@ extension MainViewController{
             animationView.loopMode = .playOnce
             animationView.animationSpeed = 1
             animationView.play()
-        }
-    }
-}
-
-
-extension MainViewController {
-    func getDocCount(){
-        let collectionRef = Firestore.firestore().collection("Diary")
-
-        collectionRef.getDocuments { [self] (snapshot, error) in
-            if error != nil {
-                print("Document를 가져오는 중 에러 발생")
-            } else {
-                if let snapshot = snapshot {
-                    docCount = snapshot.documents.count
-                    updateAnimation() // 애니메이션 업데이트
-                }
-            }
         }
     }
 }
