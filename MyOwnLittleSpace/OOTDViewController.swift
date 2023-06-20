@@ -64,7 +64,7 @@ extension OOTDViewController{
         // 온도에 맞게 폴더 이름 생성
         let folderName: String = makeFoloderName(temp: temperature)
         
-        // 업로드할 이미지의 파일명 설정 (최근 업로드 순서대로 가져올 수 있도록 이미지의 파일명을 날짜 + UUID 로 설정)
+        // 최근 업로드 순서대로 가져올 수 있도록 업로드할 이미지의 파일명을 날짜 + UUID 로 설정
         let filename = nowDate + "\(UUID().uuidString).jpg"
 
         // 업로드할 이미지의 데이터 변환

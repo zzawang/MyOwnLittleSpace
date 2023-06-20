@@ -75,7 +75,6 @@
 		AAC2BFAB2A3785CF002E1263 /* dancingDiary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */; };
 		AAC2BFAD2A378D60002E1263 /* weather4.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFAC2A378D60002E1263 /* weather4.png */; };
 		AAC2BFBA2A3E37ED002E1263 /* foundOOTD.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */; };
-		AAC2BFBB2A3E37ED002E1263 /* ootd.json in Resources */ = {isa = PBXBuildFile; fileRef = AAC2BFB92A3E37ED002E1263 /* ootd.json */; };
 		AAC2BFBD2A3EFD74002E1263 /* OOTDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */; };
 		AAC2BFBF2A3F1FD6002E1263 /* OOTDLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */; };
 		AAC2BFC12A3F2247002E1263 /* OOTDLibraryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */; };
@@ -138,7 +137,6 @@
 		AAC2BFAA2A3785CF002E1263 /* dancingDiary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dancingDiary.json; sourceTree = "<group>"; };
 		AAC2BFAC2A378D60002E1263 /* weather4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather4.png; sourceTree = "<group>"; };
 		AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foundOOTD.json; sourceTree = "<group>"; };
-		AAC2BFB92A3E37ED002E1263 /* ootd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ootd.json; sourceTree = "<group>"; };
 		AAC2BFBC2A3EFD74002E1263 /* OOTDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDViewController.swift; sourceTree = "<group>"; };
 		AAC2BFBE2A3F1FD6002E1263 /* OOTDLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDLibraryViewController.swift; sourceTree = "<group>"; };
 		AAC2BFC02A3F2247002E1263 /* OOTDLibraryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOTDLibraryDetailViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				AAC2BFC22A3F50C4002E1263 /* savePhoto.json */,
 				AAC2BF9A2A35FAEF002E1263 /* Lock.json */,
 				AAC2BFB82A3E37E9002E1263 /* foundOOTD.json */,
-				AAC2BFB92A3E37ED002E1263 /* ootd.json */,
 				AA59AB012A236D4C00CBF9AE /* plant1.json */,
 				AA59AAFE2A236D4C00CBF9AE /* plant2.json */,
 				AA59AB002A236D4C00CBF9AE /* plant3.json */,
@@ -374,7 +371,6 @@
 				AAC2BF922A3499BF002E1263 /* mood15.png in Resources */,
 				AAC2BF8E2A3499BF002E1263 /* mood19.png in Resources */,
 				AAC2BF902A3499BF002E1263 /* mood22.png in Resources */,
-				AAC2BFBB2A3E37ED002E1263 /* ootd.json in Resources */,
 				AAC2BF892A3499BF002E1263 /* mood17.png in Resources */,
 				AAC2BFAB2A3785CF002E1263 /* dancingDiary.json in Resources */,
 				AA59AB072A236D4C00CBF9AE /* plant5.json in Resources */,
