@@ -27,9 +27,18 @@
 
 ## 📹 코드 설명 영상
 
+###### 클릭하면 유튜브로 이동합니다
 
+<a href="https://youtu.be/dS5I6JAx_Vs">
+  <img width="700" alt="코드설명_사진" src="https://github.com/user-attachments/assets/4ea63bd6-009d-4019-b6bb-406ed3f17228" style="cursor: pointer;">
+</a>
 
 <br><br>
 
 ## 📹 애플리케이션 시연 영상
 
+###### 클릭하면 유튜브로 이동합니다
+
+<a href="https://youtu.be/a68J_8FgwFQ">
+  <img width="700" alt="시연영상_사진" src="https://github.com/user-attachments/assets/b44e3470-4b58-4a6d-9101-773b9446acc1" style="cursor: pointer;">
+</a>
